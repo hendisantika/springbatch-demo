@@ -56,4 +56,21 @@ public class HomeController {
 
     }
 
+    @GetMapping("/launchJob2")
+    public String kickOffJob2() {
+
+        try {
+
+            JobParameters jobParameters = new JobParametersBuilder().addLong("time", System.currentTimeMillis()).toJobParameters();
+            jobLauncher.run(job2, jobParameters);
+
+
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+
+        return "Done";
+
+    }
+
 }
