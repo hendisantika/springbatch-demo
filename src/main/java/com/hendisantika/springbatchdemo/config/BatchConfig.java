@@ -98,7 +98,7 @@ public class BatchConfig {
 
     @Bean
     public FlatFileItemReader<Vehicle> reader() {
-        return new FlatFileItemReaderBuilder<Vehicle>().name("vechileItemReader").resource(new ClassPathResource("vechiles.csv"))
+        return new FlatFileItemReaderBuilder<Vehicle>().name("vechileItemReader").resource(new ClassPathResource("vehicles.csv"))
                 .delimited().names(new String[]{"type", "model", "built"})
                 .linesToSkip(1)  //skipping row one from csv file
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<Vehicle>() {

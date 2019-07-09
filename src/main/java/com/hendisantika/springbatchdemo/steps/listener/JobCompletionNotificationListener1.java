@@ -33,7 +33,7 @@ public class JobCompletionNotificationListener1 extends JobExecutionListenerSupp
         if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
 
             log.info("!!! Job Done");
-            final String queryStr = "Select * from Vechile";
+            final String queryStr = "Select * from Vehicle";
             jdbcTemplate.query(queryStr,
                     (rs, row) -> new Vehicle(
                             Long.parseLong(rs.getString(1)),
