@@ -9,6 +9,9 @@ import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -71,6 +74,21 @@ public class HomeController {
 
         return "Done";
 
+    }
+
+    @GetMapping("/")
+    public String home() {
+        log.info("HomeController");
+        return "Home";
+    }
+
+    @DeleteMapping("/")
+    public ResponseEntity<?> deleteAll() {
+        boolean deleted = this.vechileService.deleteAll();
+        if (deleted) {
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
